@@ -1,3 +1,4 @@
+from datetime import datetime
 class Medicamento:
     def __init__(self):
         self.__nombre = "" 
@@ -119,6 +120,12 @@ def main():
                 tipo=input("Ingrese el tipo de mascota (felino o canino): ")
                 peso=int(input("Ingrese el peso de la mascota: "))
                 fecha=input("Ingrese la fecha de ingreso (dia/mes/año): ")
+                try:
+                    datetime.strptime(fecha, "%d/%m/%Y")
+                except ValueError:
+                    print("Formato de fecha inválido. Use el formato dd/mm/aaaa.")
+                    break  
+                    
                 nm=int(input("Ingrese cantidad de medicamentos: "))
                 lista_med=[]
 
@@ -130,7 +137,7 @@ def main():
                 for m in lista_med:
                     if m.verNombre().lower() == nombre_medicamentos:
                         nmedicamento= True
-                        break
+                        continue
 
                 if nmedicamento:
                     print(" Ya ingresaste ese medicamento. Por favor, ingresa uno diferente.")
