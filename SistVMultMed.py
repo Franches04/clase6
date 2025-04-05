@@ -114,13 +114,25 @@ def main():
                 nm=int(input("Ingrese cantidad de medicamentos: "))
                 lista_med=[]
 
-                for i in range(0,nm):
-                    nombre_medicamentos = input("Ingrese el nombre del medicamento: ")
-                    dosis =int(input("Ingrese la dosis: "))
-                    medicamento = Medicamento()
-                    medicamento.asignarNombre(nombre_medicamentos)
-                    medicamento.asignarDosis(dosis)
-                    lista_med.append(medicamento)
+                
+            for i in range(nm):
+                nombre_medicamentos = input("Ingrese el nombre del medicamento: ").strip().lower()
+
+                nmedicamento = False
+                for m in lista_med:
+                    if m.verNombre().lower() == nombre_medicamentos:
+                        nmedicamento= True
+                        break
+
+                if nmedicamento:
+                    print(" Ya ingresaste ese medicamento. Por favor, ingresa uno diferente.")
+                    continue
+
+                dosis = int(input("Ingrese la dosis: "))
+                medicamento = Medicamento()
+                medicamento.asignarNombre(nombre_medicamentos)
+                medicamento.asignarDosis(dosis)
+                lista_med.append(medicamento)
 
                 mas= Mascota()
                 mas.asignarNombre(nombre)
